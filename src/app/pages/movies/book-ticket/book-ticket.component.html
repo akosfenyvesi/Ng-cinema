@@ -1,0 +1,99 @@
+<mat-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <!--<form [formGroup]="firstFormGroup">-->
+    <ng-template matStepLabel>Ticket selection</ng-template>
+    <!--formControlName="bookingType"-->
+    <h1>Booking Type</h1>
+    <mat-radio-group class="radio-group" color="primary" aria-label="Select an option" [(ngModel)]="ticketType"
+      (change)="radioChange($event)">
+      <div class="radio-button-group">
+        <mat-radio-button class="radio-button" [value]="'reserve'" checked>Reservation</mat-radio-button>
+        <div class="txt">Reserve your seats now and buy your tickets at the Box Office no later than 30 minutes before
+          the screening. Some seats are available only for ticket purchase.</div>
+      </div>
+      <div class="radio-button-group">
+        <mat-radio-button class="radio-button" [value]="'buy'">Buy tickets</mat-radio-button>
+        <div class="txt">Get your tickets now and skip the queue in the box-office.</div>
+      </div>
+    </mat-radio-group>
+    <div>
+      <button mat-raised-button color="primary" matStepperNext (click)="clickFirstStep()">Next</button>
+    </div>
+    <!--</form>-->
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Order">
+    <form [formGroup]="secondFormGroup">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let ticket">{{ticket.type}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let ticket">{{ticket.price}} Ft</td>
+        </ng-container>
+
+        <ng-container matColumnDef="convenienceFee">
+          <th mat-header-cell *matHeaderCellDef> Convenience Fee </th>
+          <td mat-cell *matCellDef="let ticket">{{ticket.convenienceFee}} Ft</td>
+        </ng-container>
+
+        <ng-container matColumnDef="qty">
+          <th mat-header-cell *matHeaderCellDef> Qty. </th>
+          <td mat-cell *matCellDef="let ticket">
+            <span class={{ticket.type}}>
+              <mat-form-field appearance="fill">
+                <mat-label>Qty.</mat-label>
+                <mat-select (selectionChange)="selectionChange($event, ticket.type)">
+                  <mat-option *ngFor="let number of [].constructor(11); let i = index" value="{{i}}">
+                    {{i}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="clickSecondStep()">Select Seats</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Select Seat</ng-template>
+    <div class="seats-container">
+      <div class="screen"></div>
+
+      <div *ngFor="let row of [].constructor(seats.rows); let i = index">
+        <div class="row">
+          <!--*ngClass="seats.seats.includes(i + '.' + j) ? 'occupied' : ''"-->
+          <div *ngFor="let seat of [].constructor(seats.columns); let j = index">
+            <div id="{{i + '.' + j}}" class="seat" (click)="choose((i + '.' + j))"
+              [ngClass]="{'occupied': seats.occupiedSeats.includes(i + '.' + j), 'aisle': j  === (seats.columns / 2 | ceil)}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" matStepperNext (click)="clickThirdStep()">Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Finish</ng-template>
+    <button mat-raised-button mat-dialog-close color="primary" matStepperNext (click)="clickFinalStep()">Book</button>
+  </mat-step>
+</mat-stepper>

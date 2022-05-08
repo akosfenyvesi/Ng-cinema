@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="screen"></div>
+
+  <div *ngFor="let row of [].constructor(seats.rows); let i = index">
+    <div class="row">
+      <!--*ngClass="seats.seats.includes(i + '.' + j) ? 'occupied' : ''"-->
+      <div *ngFor="let seat of [].constructor(seats.columns); let j = index">
+        <div id="{{i + '.' + j}}" class="seat" (click)="choose((i + '.' + j))"
+          [ngClass]="{'occupied': seats.occupiedSeats.includes(i + '.' + j), 'aisle': j  === (seats.columns / 2 | ceil)}"></div>
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
+</div>

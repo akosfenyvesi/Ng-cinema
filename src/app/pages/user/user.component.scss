@@ -1,0 +1,54 @@
+.div-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-component {
+    height: 100vh;
+}
+
+form div {
+    padding: 5px 5px 5px 5px;
+}
+
+
+.buttons {
+    padding: 5px;
+}
+
+button {
+    width: 150px;
+}
+
+mat-card {
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-card-content {
+    text-align: center;
+}
+
+mat-card-header {
+    width: 30%;
+}
+
+mat-card-content {
+    width: 70%;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}

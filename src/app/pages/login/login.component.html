@@ -1,0 +1,23 @@
+<div class="main_component">
+  <div class="div-flex">
+    <div class="form">
+      <mat-form-field>
+        <mat-label for="email">Email: </mat-label><input matInput type="text" [formControl]="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="password">Password: </mat-label><input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" />
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+      </mat-form-field>
+      <span class="loading-indicator" *ngIf="loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </span>
+      <span>
+        <span><button mat-raised-button color="primary" (click)="onLogin()">Login</button></span>
+      </span>
+      <span class="signup">Don't have an Account? <a [routerLink]="'/signup'">Sign Up</a></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+.movieList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.parentFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.childFlex {
+  width: 90%;
+}
+
+button {
+  margin: 10px 20px 10px 0px;
+}
+
+.ratingImg {
+  margin-right: 10px;
+}
+
+.genre {
+  margin-right: 5px;
+}
+
+.moviePoster {
+  margin-right: 20px;
+}
+
+mat-card {
+  align-self: center;
+  width: 75%;
+  display: flex;
+  padding: 20px;
+  margin: 10px;
+}
+
+mat-card-title {
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+.data {
+  display: flex;
+  align-items: left;
+  padding-bottom: 5px;
+}
+
+.button-container {
+  display: flex;
+  align-items: left;
+}
+
+@media only screen and (max-width: 800px) {
+  .moviePoster {
+    width: 130px;
+  }
+  mat-card {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .moviePoster {
+    width: 110px;
+  }
+
+  mat-card {
+    width: 55vh;
+  }
+
+  .button-container {
+overflow: auto;
+  }
+}

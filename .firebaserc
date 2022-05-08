@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ng-cinema-61353": {
+      "hosting": {
+        "cinema": [
+          "ng-cinema-61353"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ng-cinema-61353"
+  }
+}

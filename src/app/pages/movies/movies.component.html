@@ -1,0 +1,45 @@
+<div class="parentFlex">
+  <div class="childFlex">
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [(ngModel)]="today"
+        (dateChange)="addEvent('change', $event)">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+      <mat-datepicker [touchUi]="isMobileLayout" #picker></mat-datepicker>
+    </mat-form-field>
+    <p>{{selectedDate | date:'EEEE, d/M/y'}}</p>
+  </div>
+</div>
+
+
+<div class="parentFlex">
+  <div class="childFlex">
+    <div class="movieList">
+      <div *ngFor="let movie of movieObject">
+        <div *ngFor="let date of movie.when | keyvalue">
+          <mat-card *ngIf="(selectedDate | dateConvert) === date.key">
+            <span class="left">
+              <img class="moviePoster" src="{{movie.imageUrl}}" />
+            </span>
+            <span class="right">
+              <mat-card-title>{{movie.title}}</mat-card-title>
+              <div class="data">
+                <img class="ratingImg" src="assets/ic_rating_{{movie.rating}}.png" />
+                <span class="genre">{{movie.genre.join(", ")}} |</span>
+                <span>{{movie.playTime}} mins</span>
+              </div>
+              <div class="button-container">
+                <button mat-raised-button (click)="openDialog(movie.id, time, movie.title)" color="primary" [disabled]="!loggedInUser" [matTooltip]="loggedInUser ? 'Book now!' : 'Log in to book!'"
+                  type="submit" *ngFor="let time of date.value">{{time}}</button>
+              </div>
+            </span>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<app-book-ticket></app-book-ticket>-->
+  

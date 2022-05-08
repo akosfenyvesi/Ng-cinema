@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="movieList">
+    <div *ngFor="let booking of bookings">
+      <mat-card>
+        <div class="header">
+          <mat-card-header>
+            <mat-card-title>{{booking.title}}</mat-card-title>
+            <mat-card-subtitle>{{booking.type === 'reserve' ? "Reservation" : "Paid"}}</mat-card-subtitle>
+          </mat-card-header>
+        </div>
+        <div class="content">
+            <div>Date: {{booking.date | fsdate}}</div>
+          <mat-card-content>
+            <h3>Seats</h3>
+            <div *ngFor="let seat of booking.selectedSeats">{{seat | seats}} </div>
+          </mat-card-content>
+
+          <button mat-raised-button color="primary" (click)="deleteTicket(booking.id)">Delete</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

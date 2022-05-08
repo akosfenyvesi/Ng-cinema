@@ -1,0 +1,16 @@
+<div class="container" *ngIf="!(loggedInUser)">
+  <h1>Welcome to CinemaTown</h1>
+  <h4>Log in to book some tickets!</h4>
+</div>
+
+<div class="container" *ngIf="(loggedInUser)">
+  <h1 *ngIf="(loggedInUser)">Welcome back to CinemaTown</h1>
+</div>
+
+<h3>Check out some of our movies!</h3>
+
+<div class="my-nav-list">
+    <div *ngFor="let movie of randomMovies" class="my-nav-list">
+        <img class="moviePoster" src="{{movie.imageUrl}}" />
+    </div>
+</div>
